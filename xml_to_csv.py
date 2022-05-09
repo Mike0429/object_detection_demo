@@ -46,10 +46,10 @@ def xml_to_csv(path):
                 int(root.find("size")[0].text),
                 int(root.find("size")[1].text),
                 member[0].text,
-                xmin_new,
-                ymax_new,
                 ymin_new,
-                ymax_new,                
+                ymax_new,
+                xmin_new,
+                xmax_new,                
             )
             xml_list.append(value)
     column_name = [
