@@ -47,8 +47,8 @@ def xml_to_csv(path):
                 int(root.find("size")[1].text),
                 member[0].text,
                 xmin_new,
+                ymax_new,
                 ymin_new,
-                xmax_new,
                 ymax_new,                
             )
             xml_list.append(value)
