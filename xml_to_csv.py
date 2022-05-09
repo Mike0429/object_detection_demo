@@ -12,6 +12,7 @@ import glob
 import pandas as pd
 import argparse
 import xml.etree.ElementTree as ET
+import numpy as np
 
 
 def xml_to_csv(path):
@@ -33,15 +34,23 @@ def xml_to_csv(path):
         root = tree.getroot()
         for member in root.findall("object"):
             classes_names.append(member[0].text)
+            xmin = int(member[5][0].text)
+            ymin = int(member[5][1].text)
+            xmax = int(member[5][2].text)
+            ymax = int(member[5][3].text)
+            xmin_new = np.min(xmin, xmax)
+            xmax_new = np.max(xmin, xmax)
+            ymin_new = np.min(ymin, ymax)
+            ymax_new = np.max(ymin, ymax)
             value = (
                 root.find("filename").text,
                 int(root.find("size")[0].text),
                 int(root.find("size")[1].text),
                 member[0].text,
-                int(member[5][0].text),
-                int(member[5][1].text),
-                int(member[5][2].text),
-                int(member[5][3].text),
+                xmin,
+                ymin,
+                xmax,
+                ymax,                
             )
             xml_list.append(value)
     column_name = [
