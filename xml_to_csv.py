@@ -34,8 +34,8 @@ def xml_to_csv(path):
         for member in root.findall("object"):
             classes_names.append(member[0].text)
             xmin = int(member[5][0].text)
-            ymin = int(member[5][1].text)
-            xmax = int(member[5][2].text)
+            xmax = int(member[5][1].text)
+            ymin = int(member[5][2].text)
             ymax = int(member[5][3].text)
             xmin_new = min(xmin, xmax)
             xmax_new = max(xmin, xmax)
@@ -46,10 +46,10 @@ def xml_to_csv(path):
                 int(root.find("size")[0].text),
                 int(root.find("size")[1].text),
                 member[0].text,
-                xmax_new,
                 xmin_new,
-                ymax_new,
-                ymin_new,                
+                ymin_new,
+                xmax_new,
+                ymax_new,                
             )
             xml_list.append(value)
     column_name = [
